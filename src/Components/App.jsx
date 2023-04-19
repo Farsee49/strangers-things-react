@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { ReactDOM } from "react";
+import Form from "./Form";
+import Posts from './Posts';
 
 const COHORT_NAME = '2301-ftb-et-web-pt';
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
@@ -22,13 +24,15 @@ export default function App() {
 
 
 return(<>
+      <Posts />
+      <Form />
     <h1>Otters Frolicing</h1>
-    <div> posts:{
+    <ul> posts:{
         posts.map(function(post) {
-            return <><div key={post.id}>{post.title}</div>
+            return <><li key={post.id}>{post.title}</li>
             <button>SUP</button><button>SUP</button></>
         })
-    }</div>
+    }</ul>
 
    </>)
 }
