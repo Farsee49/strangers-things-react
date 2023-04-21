@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {fetchPosts } from '../data-requests'
+import {fetchPosts} from './data-requests'
 import Form from "./Form";
 import NewPost from "./Posts";
 
