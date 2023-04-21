@@ -1,38 +1,28 @@
-import React, {useState, useEffect} from "react";
-import { ReactDOM } from "react";
+import React, { useState } from "react";
+import {fetchPosts } from '../data-requests'
 import Form from "./Form";
-import Posts from './Posts';
-
-const COHORT_NAME = '2301-ftb-et-web-pt';
-const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
-
+import NewPost from "./Posts";
 
 export default function App() {
-    const [posts, setPosts] = useState([]);
-
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const resp = await fetch('https://jsonplace-univclone.herokuapp.com/posts');
-            const data = await resp.json();
-            console.log('resp:',data)
-            setPosts(data)
-        }
-       fetchPosts();
-    },[])
+    const[posts, setPosts] = useState([]);
+    async function getPosts() {
+      const result= await fetchPosts()
+      if (result.success) {
+        setPosts(result.data.posts)
+      }
     
-
-
-return(<>
-      <Posts />
-      <Form />
-    <h1>Otters Frolicing</h1>
-    <ul> posts:{
-        posts.map(function(post) {
-            return <><li key={post.id}>{post.title}</li>
-            <button>SUP</button><button>SUP</button></>
-        })
-    }</ul>
-
-   </>)
+      }
+    return(<>
+        <h1>Otters Frolicing</h1>
+        <button onClick={getPosts}>CLICK</button>
+        <Form />
+        <NewPost />
+       {
+          posts.map(function(post){
+            return(
+                <div key ={post._Id}>{post.title}</div> 
+            )
+          })   }</>
+    )
+  
 }

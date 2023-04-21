@@ -1,9 +1,5 @@
-import App from './App';
-import Form from './Form';
-import Api from './Api';
-import Posts from './Posts';
+
+export {default as App} from './App';
 
 
 
-
-export {App, Form, };
