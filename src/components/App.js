@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {Register,
         Login,
+        MyProfile,
         EditPost,
         CreatePost,
         SinglePost,
@@ -102,6 +103,10 @@ if (isLoggedIn) {
         <Route path='/message/:postId'
          element={<Message
          posts={posts} token={token} getPosts={getPosts} navigate={navigate}/>}/>
+
+        <Route path='/profile/:postId'
+         element={<MyProfile
+         posts={posts} getPosts={getPosts} token={token} navigate={navigate}/>}/>
 
      </Routes>
      {/* <Posts posts={posts} setPosts={setPosts}/> */}

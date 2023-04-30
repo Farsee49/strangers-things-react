@@ -19,6 +19,7 @@ export default function Header({setToken, setIsLoggedIn, isLoggedIn,navigate}) {
         {isLoggedIn ?(<><Button variant="contained" size="small" onClick={logout}>LogOut</Button>
          <Link to='/createpost'><Button variant="contained" size="small">NewPost</Button></Link>
          <Link to='/posts'><Button variant="contained" size="small">Posts</Button></Link>
+         <Link to='/profile/:postId'><Button variant="contained" size="small">Profile</Button></Link>
          {/* <Link to='/edit-post/:postId'><button>Edit</button></Link> */}
     </>):(<>
         <Link to='/login'><Button variant="contained" size="small">Login</Button></Link>
