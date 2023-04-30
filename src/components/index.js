@@ -8,4 +8,5 @@ export { default as Login } from './Login';
 export { default as CreatePost } from './CreatePost';
 export { default as EditPost } from './Editpost';
 export { default as SinglePost } from './SinglePost';
+export { default as Message } from './Message';
 //export { default as RemovePost} from './deletePost'

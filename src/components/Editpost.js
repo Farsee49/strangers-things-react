@@ -78,6 +78,7 @@ export default function EditPost({posts, token, getPosts}){
           <p>Description: {post.description}</p>
           <p>Price: {post.price}</p>
           <p>Location: {post.location}</p>
+          <p>{post.message}</p>
           <> {post.willDeliver &&
                 <Typography  variant="primary">
                   Available for Delivery

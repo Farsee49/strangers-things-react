@@ -43,20 +43,26 @@ export default function Posts({posts,token,navigate,getPosts}) {
                   Not Available for Delivery
                 </Typography>}</>
             <p>{post.location}</p>
+            <p>{post.author.username}</p>
            
             <Button onClick={() => handleClick(post._id, token, getPosts)}
             variant="contained"color="error"size="small">Delete</Button>
 
             <Link to={`/edit-post/${post._id}`} >
-            <Button  type='submit' variant='contained'size='small' >Edit Post</Button></Link>
+            <Button  type='submit' variant='contained'size='small' >Edit Post
+            </Button></Link>
             </>
           ):(
             <>
              <p>{post.title}</p>
-             <Button  type='submit' variant='contained'size='small'>Message</Button>
+             <p>{post.author.username}</p>
+             <Link to={`/message/${post._id}`} >
+             <Button  type='submit' variant='contained'size='small'>Message
+             </Button></Link>
 
              <Link to={`/single-post/${post._id}`} >
-              <Button  type='submit' variant='contained'size='small'>View Post</Button></Link>
+              <Button  type='submit' variant='contained'size='small'>View Post
+              </Button></Link>
              </>
             )
         }

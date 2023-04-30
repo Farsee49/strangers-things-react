@@ -5,7 +5,7 @@ import {Register,
         EditPost,
         CreatePost,
         SinglePost,
-        
+        Message,
         Posts,
         Header} from "./";
 import { fetchPosts, myData } from "../data-requests";
@@ -98,6 +98,10 @@ if (isLoggedIn) {
         <Route path='/edit-post/:postId'
          element={<EditPost 
          posts={posts} token={token} getPosts={getPosts}/>}/>
+        
+        <Route path='/message/:postId'
+         element={<Message
+         posts={posts} token={token} getPosts={getPosts} navigate={navigate}/>}/>
 
      </Routes>
      {/* <Posts posts={posts} setPosts={setPosts}/> */}
