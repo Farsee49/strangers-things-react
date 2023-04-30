@@ -1,12 +1,10 @@
-import {createRoot} from "react-dom/client";
-import {BrowserRouter} from "react-router-dom";
-import App from "./Components/App";
+import {createRoot} from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import {App} from './components'
+import './components/index.css';
 
+const root = createRoot(document.querySelector('#root'));
 
-const root = createRoot(document.querySelector('#app'));
-
-root.render(
-    <BrowserRouter>
-   <App/>
-    </BrowserRouter>
-);
+root.render(<BrowserRouter>
+              <App />
+            </BrowserRouter>);
