@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate,Link } from 'react-router-dom';
 
 import { updatePost } from '../data-requests';
-import  { Typography,Button,TextField,Checkbox } from '@mui/material';
+import  { Alert,Typography,Button,TextField,Checkbox,Card } from '@mui/material';
 
 
 
@@ -43,6 +43,7 @@ export default function EditPost({posts, token, getPosts}){
     {post?
       (<>
              <h1>EditPost</h1>
+             <Card variant="outlined"sx={{ minWidth: 275 }}>
        <form onSubmit={handleSubmit}>
             <TextField id="filled"  variant="standard"
               type="text"
@@ -80,13 +81,13 @@ export default function EditPost({posts, token, getPosts}){
           <p>Location: {post.location}</p>
           <p>{post.message}</p>
           <> {post.willDeliver &&
-                <Typography  variant="primary">
+                <Alert severity="info">
                   Available for Delivery
-                </Typography>}</> <> {post.willDeliver === false &&
-                <Typography  variant="primary">
+                </Alert>}</> <> {post.willDeliver === false &&
+                 <Alert severity="info">
                   Not Available for Delivery
-                </Typography>}</>
-        </>):(<h1>no post</h1>)
+                </Alert>}</>
+        </Card></>):(<h1>no post</h1>)
     }
          </>)
 }
