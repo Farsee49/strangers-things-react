@@ -49,7 +49,8 @@ useEffect(()=>{
     getPosts();
     if(token) {
         getData();
-        setIsLoggedIn(true)
+        setIsLoggedIn(true);
+        navigate('/posts')
     };
     
 },[token]);
@@ -66,7 +67,7 @@ if (isLoggedIn) {
 }else{
     console.log('logged out')
 }
-// console.log(user)
+ //console.log(user)
 // console.log(posts)
     return(
     <>
@@ -106,7 +107,8 @@ if (isLoggedIn) {
 
         <Route path='/profile/:postId'
          element={<MyProfile
-         posts={posts} getPosts={getPosts} token={token} navigate={navigate}/>}/>
+         posts={posts} getPosts={getPosts} 
+         token={token} navigate={navigate} user={user}/>}/>
 
      </Routes>
      {/* <Posts posts={posts} setPosts={setPosts}/> */}

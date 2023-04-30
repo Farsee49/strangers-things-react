@@ -33,15 +33,15 @@ export default function Posts({posts,token,navigate,getPosts}) {
             <h2>{post.title}</h2>
             <h3>{post.description}</h3>
             <h3>{post.price}</h3>
-              {post.willDeliver &&
+             
+            <h3>{post.location}</h3>
+            <h3>{post.author.username}</h3> {post.willDeliver &&
                  <Alert severity="info">
                  Available for Delivery
                 </Alert>} <> {post.willDeliver === false &&
                <Alert severity="info">
                   Not Available for Delivery
                 </Alert>}</>
-            <h3>{post.location}</h3>
-            <h3>{post.author.username}</h3>
            <>{
               post.messages.map((message)=> {
                 return(

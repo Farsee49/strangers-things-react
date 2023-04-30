@@ -5,24 +5,37 @@ import { deletePost, fetchPosts} from "../data-requests";
 
 
 
-export default function MyProfile({posts,token,navigate,getPosts}) {
+export default function MyProfile({posts,token,navigate,getPosts,user}) {
   async function handleClick(postId, token, getPosts) {
-    // try {
-    //   const result = await deletePost(postId, token);
-    //   if (result.success) {
-    //     getPosts();
-    //     navigate('/posts')
-    //   } else {
-    //     console.log(result.error);
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    
+    try {
+      const result = await deletePost(postId, token);
+      if (result.success) {
+        getPosts();
+        navigate('/profile')
+      } else {
+        console.log(result.error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
-  
+  console.log(user)
      
  return(
-  <>
+ <> <h1>MyMessages</h1>
+    {
+    user.messages.map((message)=> {
+      return(
+        <Fragment key={message._id}>
+          <h3>Message: {message.content}</h3>
+          <h3>From: {message.fromUser.username}</h3>
+        </Fragment>
+      )
+    })
+    }
+    <br/>
+    <h1>MyPosts</h1>
   {
     posts&&posts.map((post) =>{
       return(
@@ -33,25 +46,16 @@ export default function MyProfile({posts,token,navigate,getPosts}) {
             <h2>{post.title}</h2>
             <h3>{post.description}</h3>
             <h3>{post.price}</h3>
-              {post.willDeliver &&
+              
+            <h3>{post.location}</h3>
+            <h3>{post.author.username}</h3>
+           {post.willDeliver &&
                  <Alert severity="info">
                  Available for Delivery
                 </Alert>} <> {post.willDeliver === false &&
                <Alert severity="info">
                   Not Available for Delivery
                 </Alert>}</>
-            <h3>{post.location}</h3>
-            <h3>{post.author.username}</h3>
-           <>{
-              post.messages.map((message)=> {
-                return(
-                  <Fragment key={message._id}>
-                    <h3>Message: {message.content}</h3>
-                    <h3>From: {message.fromUser.username}</h3>
-                  </Fragment>
-                )
-              })
-              }</>
            
             <Button onClick={() => handleClick(post._id, token, getPosts)}
             variant="contained"color="error"size="small">Delete</Button>
