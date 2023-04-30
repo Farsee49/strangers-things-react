@@ -13,7 +13,7 @@ export default function Register({setToken,navigate}){
     //console.log(username, password);
 
    async function handleSubmit(ev) {
-    ev.preventDefault()
+    ev.preventDefault();
     //console.log(9900)
     const user = {username, password}
     const results = await registerUser(user);

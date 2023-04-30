@@ -152,18 +152,19 @@ export const registerUser = async (user) => {
       console.error(err);
     }
   };
-  const postMessage = async () => {
+  export const postMessage = async (postId,token,message) => {
+    console.log(message)
+    console.log(postId)
+    console.log(token)
     try {
-      const response = await fetch(`${BASE_URL}/${postId}/messages`, {
+      const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          message: {
-            content: "Do you still have this?  Would you take $10 less?"
-          }
+          message
         })
       });
       const result = await response.json();

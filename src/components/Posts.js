@@ -1,5 +1,5 @@
 import React,{Fragment, useState} from "react";
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams} from 'react-router-dom'
 import  { Typography,Button,} from '@mui/material';
 import { deletePost, fetchPosts} from "../data-requests";
 //import {getPosts} from './App';
@@ -32,9 +32,9 @@ export default function Posts({posts,token,navigate,getPosts}) {
         {
           post.isAuthor?(
             <>
-            <p>{post.title}</p>
-            <p>{post.description}</p>
-            <p>{post.price}</p>
+            <h2>{post.title}</h2>
+            <h3>{post.description}</h3>
+            <h3>{post.price}</h3>
               {post.willDeliver &&
                 <Typography  variant="subtitle1">
                  Available for Delivery
@@ -42,8 +42,18 @@ export default function Posts({posts,token,navigate,getPosts}) {
                 <Typography  variant="subtitle1">
                   Not Available for Delivery
                 </Typography>}</>
-            <p>{post.location}</p>
-            <p>{post.author.username}</p>
+            <h3>{post.location}</h3>
+            <h3>{post.author.username}</h3>
+            <p>{
+              post.messages.map((message)=> {
+                return(
+                  <Fragment key={message._id}>
+                    <h3>Message: {message.content}</h3>
+                    <h3>From: {message.fromUser.username}</h3>
+                  </Fragment>
+                )
+              })
+              }</p>
            
             <Button onClick={() => handleClick(post._id, token, getPosts)}
             variant="contained"color="error"size="small">Delete</Button>
@@ -54,15 +64,15 @@ export default function Posts({posts,token,navigate,getPosts}) {
             </>
           ):(
             <>
-             <p>{post.title}</p>
-             <p>{post.author.username}</p>
+             <h2>{post.title}</h2>
+             <h3>{post.author.username}</h3>
              <Link to={`/message/${post._id}`} >
              <Button  type='submit' variant='contained'size='small'>Message
              </Button></Link>
 
              <Link to={`/single-post/${post._id}`} >
-              <Button  type='submit' variant='contained'size='small'>View Post
-              </Button></Link>
+             <Button  type='submit' variant='contained'size='small'>View Post
+             </Button></Link>
              </>
             )
         }

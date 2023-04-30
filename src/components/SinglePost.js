@@ -14,16 +14,16 @@ export default function SinglePost({posts, token, getPosts}) {
     
     return(<>
         <h1>Single Post</h1>
-        <p>Title: {post.title}</p>
-          <p>Description: {post.description}</p>
-          <p>Price: {post.price}</p>
+        <h2>Title: {post.title}</h2>
+          <h3>Description: {post.description}</h3>
+          <h3>Price: {post.price}</h3>
                {post.willDeliver &&
-                <Typography  variant="primary">
+                <Typography  variant="h6">
                  Available for Delivery
                 </Typography>} <> {post.willDeliver === false &&
-                <Typography  variant="primary">
+                <Typography  variant="h6">
                   Not Available for Delivery
                 </Typography>}</>
-          <p>Location: {post.location}</p>
+          <h3>Location: {post.location}</h3>
     </>)
 }
