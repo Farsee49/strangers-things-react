@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {Register,
         Login,
         MyProfile,
@@ -11,8 +11,6 @@ import {Register,
         Header} from "./";
 import { fetchPosts, myData } from "../data-requests";
 
-
-
 export default function App(){
     const [token, setToken] = useState('');
     const [posts, setPosts] = useState([])
@@ -20,8 +18,7 @@ export default function App(){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const navigate = useNavigate();
-// console.log(window.localStorage.getItem('token'));
-   //const localToken = window.localStorage.getItem('token');
+
 function tokenCheck(){
    if(window.localStorage.getItem('token')) {
     setToken(window.localStorage.getItem('token'));
@@ -42,7 +39,6 @@ const getData = async () => {
 };
 useEffect(()=>{
     tokenCheck();
-
 },[]);
 
 useEffect(()=>{
@@ -51,34 +47,18 @@ useEffect(()=>{
         getData();
         setIsLoggedIn(true);
         navigate('/posts')
-    };
-    
+    }; 
 },[token]);
-// if (setIsLoggedIn){
-//     console.log('logged in')
-// }else{
-//     console.log('logged out')
-// }
-// if (user._id){
-//     console.log('logged in')   
-// }else{}
-if (isLoggedIn) {
-    console.log('logged in')
-}else{
-    console.log('logged out')
-}
- //console.log(user)
-// console.log(posts)
+
     return(
     <>
-    {/* <Login /> */}
     <Header setToken={setToken} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} navigate={navigate}/>
-    
+    <br/>
      <Routes>
         <Route path='/single-post/:postId' 
          element={<SinglePost 
          token={token} setToken={setToken}
-         posts={posts} getPosts={getPosts}/>}/>
+         posts={posts} getPosts={getPosts} navigate={navigate}/>}/>
 
         <Route path='/createpost' 
         element={<CreatePost
@@ -109,10 +89,8 @@ if (isLoggedIn) {
          element={<MyProfile
          posts={posts} getPosts={getPosts} 
          token={token} navigate={navigate} user={user}/>}/>
-
      </Routes>
-     {/* <Posts posts={posts} setPosts={setPosts}/> */}
    </>
-    )
+  )
 };
 

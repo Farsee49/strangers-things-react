@@ -1,11 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const COHORT_NAME = '2301-ftb-et-web-pt'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 
-
+//++++++++++++++++++++++++++++++++++USER REQUESTS+++++++++++++++++++++++++++++++++++++++//////////
 export const registerUser = async (user) => {
     console.log(user)
     try {
@@ -29,7 +27,6 @@ export const registerUser = async (user) => {
   
   export const login = async (user) => {
    // console.log(user)
-
     try {
       const response = await fetch(`${BASE_URL}/users/login`, {
         method: "POST",
@@ -49,7 +46,6 @@ export const registerUser = async (user) => {
   };
 
   export const myData = async (token) => {
-  // console.log(token)
     try {
       const response = await fetch(`${BASE_URL}/users/me`, {
         headers: {
@@ -58,7 +54,6 @@ export const registerUser = async (user) => {
         },
       });
       const result = await response.json();
-      //console.log(result);
       return result
     } catch (err) {
       console.error(err);
@@ -67,12 +62,10 @@ export const registerUser = async (user) => {
 
 
 
-
+// ++++++++++++++++++++++++++++++++POST REQUEST++++++++++++++++++++++++++++++++++++++++++++++++//////
 
 
   export const fetchPosts = async (token) => {
-
-    //console.log(9900)
     try {
       const response = await fetch(`${BASE_URL}/posts`,{
       headers: {
@@ -81,7 +74,6 @@ export const registerUser = async (user) => {
       }
     })
       const result = await response.json();
-      console.log(result);
       return result
     } catch (err) {
       console.error(err);
@@ -89,8 +81,6 @@ export const registerUser = async (user) => {
   };
 
   export const makePost = async (post, token) => {
-    //console.log(posts,token)
-
     try {
       const response = await fetch(`${BASE_URL}/posts`, {
         method: "POST",
@@ -103,7 +93,7 @@ export const registerUser = async (user) => {
         })
       });
       const result = await response.json();
-      console.log(result);
+     // console.log(result);
       return result
     } catch (err) {
       console.error(err);
@@ -121,20 +111,16 @@ export const registerUser = async (user) => {
         }
       });
       const result = await response.json();
-      console.log(result);
+      //console.log(result);
       return result
     } catch (err) {
       console.error(err);
     }
-    // getPosts();
-    // navigate('/posts')
   };
+  
   export const updatePost = async (postId, token, updatedPost) => {
 
     try {
-      // You will need to insert a variable into the fetch template literal
-      // in order to make the POST_ID dynamic.
-      // 5e8d1bd48829fb0017d2233b is just for demonstration.
       const response = await fetch(`${BASE_URL}/posts/${postId}`, {
         method: "PATCH",
         headers: {
@@ -146,12 +132,14 @@ export const registerUser = async (user) => {
         }),
       });
       const result = await response.json();
-      console.log(result);
+      //console.log(result);
       return result;
     } catch (err) {
       console.error(err);
     }
   };
+
+
   export const postMessage = async (postId,token,message) => {
     console.log(message)
     console.log(postId)
@@ -168,11 +156,11 @@ export const registerUser = async (user) => {
         })
       });
       const result = await response.json();
-      console.log(result);
+     // console.log(result);
       return result
     } catch (err) {
       console.error(err);
     }
-  }
+  };
   
   

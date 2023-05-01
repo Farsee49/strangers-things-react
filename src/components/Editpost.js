@@ -5,15 +5,11 @@ import { updatePost } from '../data-requests';
 import  { Alert,Typography,Button,TextField,Checkbox,Card } from '@mui/material';
 
 
-
-
 export default function EditPost({posts, token, getPosts}){
     const navigate = useNavigate();
     const { postId } = useParams();
     const [post] = posts.filter((post) => post._id === postId );
-
     const { title, description, location, price, willDeliver} = posts? post: {};
-   //console.log(post) 
     const [updatedTitle, setUpdatedTitle] = useState(title);
     const [updatedLocation, setUpdatedLocation] = useState(location);
     const [updatedPrice, setPrice] = useState(price);
@@ -21,7 +17,7 @@ export default function EditPost({posts, token, getPosts}){
     const [updatedWillDeliver, setWillDeliver] = useState(willDeliver);
     
     async function handleSubmit(event){
-        event.preventDefault()
+        event.preventDefault();
        
         const updatedPost = {
           title: updatedTitle,
@@ -29,16 +25,14 @@ export default function EditPost({posts, token, getPosts}){
           description: updatedDescription,
           price: updatedPrice,
           willDeliver: updatedWillDeliver  
-        }
+        };
         const results= await updatePost(postId, token, updatedPost);
         if(results.success){
             getPosts();
-            navigate('/posts')
+            navigate('/posts');
         }
      };
   
-    console.log(updatedWillDeliver)
-    
     return(<>
     {post?
       (<>
@@ -87,7 +81,7 @@ export default function EditPost({posts, token, getPosts}){
                  <Alert severity="info">
                   Not Available for Delivery
                 </Alert>}</>
-        </Card></>):(<h1>no post</h1>)
+        </Card></>):(<Alert severity="error">no post</Alert>)
     }
          </>)
 }

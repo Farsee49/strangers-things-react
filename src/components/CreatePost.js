@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import  { Typography,Button,TextField,Checkbox } from '@mui/material';
+import  { Button,TextField,Checkbox } from '@mui/material';
 import { makePost } from '../data-requests'
-import { Navigate } from "react-router-dom";
+
 
 export default function CreatePost({token, getPosts, navigate}) {
     const [ title, setTitle ] = useState('');
@@ -18,9 +18,7 @@ export default function CreatePost({token, getPosts, navigate}) {
         getPosts();
         navigate('/posts')
       }
-    //console.log(post)
-    
-    }console.log(willDeliver)
+    };
     return(<>
           <h1>New Post</h1>
         <form onSubmit={handleSubmit}>
@@ -57,5 +55,6 @@ export default function CreatePost({token, getPosts, navigate}) {
             /><>Available for Delivery     </>
             <Button  type='submit' variant='contained'size='small'>Save Changes</Button>
         </form>
-   </> )
-}
+   </> 
+   )
+};
