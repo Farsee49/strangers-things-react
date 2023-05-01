@@ -22,8 +22,7 @@ export default function Message({posts,token,navigate,getPosts}) {
           } catch (err) {
             console.error(err);
           }
-       
-       }
+       };
 
        console.log()
     return(
