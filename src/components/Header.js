@@ -15,7 +15,7 @@ export default function Header({setToken, setIsLoggedIn, isLoggedIn,navigate}) {
     };
     return (
     <header>
-        <h1>Otter Pit</h1>
+        <h1>Stranger's Things</h1>
         {isLoggedIn ?(<>
          <Button variant="contained" size="small" onClick={logout}>LogOut</Button>
          <Link to='/createpost'><Button variant="contained" size="small">

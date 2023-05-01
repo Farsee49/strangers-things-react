@@ -52,7 +52,8 @@ useEffect(()=>{
 
     return(
     <>
-    <Header setToken={setToken} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} navigate={navigate}/>
+    <Header setToken={setToken} setIsLoggedIn={setIsLoggedIn} 
+    isLoggedIn={isLoggedIn} navigate={navigate}/>
     <br/>
      <Routes>
         <Route path='/single-post/:postId' 
